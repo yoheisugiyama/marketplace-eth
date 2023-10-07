@@ -13,6 +13,7 @@ const NETWORKS = {
 
 const targetNetwork = NETWORKS[process.env.NEXT_PUBLIC_TARGET_CHAIN_ID]
 
+
 export const handler = (web3, provider) => () => {
   const { data, mutate, ...rest } = useSWR(
     () => (web3 ? "web3/network" : null),
@@ -22,6 +23,10 @@ export const handler = (web3, provider) => () => {
     }
   )
 
+
+
+
+
   useEffect(() => {
     provider &&
       provider.on("chainChanged", (chainId) => {
@@ -29,13 +34,22 @@ export const handler = (web3, provider) => () => {
       })
   }, [web3])
 
+
+  console.log(chainId)
+
+
+
   return {
     network: {
       data,
       mutate,
       target: targetNetwork,
-      isSupported: data === targetNetwork, 
+      isSupported: data === targetNetwork,
       ...rest,
     },
+
   }
+
+
+
 }
