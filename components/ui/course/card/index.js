@@ -1,7 +1,7 @@
 import Image from "next/legacy/image"
 import Link from "next/link"
 
-export default function Card({ course }) {
+export default function Card({ course, Footer }) {
   return (
     <div className="bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
       <div className="flex h-full">
@@ -26,6 +26,8 @@ export default function Card({ course }) {
             {course.title}
           </Link>
           <p className="mt-2 text-gray-500">{course.description.substring(0, 70)}...</p>
+          {Footer &&
+            <Footer />}
         </div>
       </div>
     </div>
