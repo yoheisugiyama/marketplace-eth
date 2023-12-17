@@ -20,3 +20,16 @@ export const useAccount = () => {
         account: swrRes
     }
 }
+
+export const useWalletInfo = () => {
+    const { account } = useAccount()
+    const { network } = useNetwork()
+
+    const canPurchaseCourse = !!(account.data && network.isSupported)
+
+    return {
+        account,
+        network,
+        canPurchaseCourse: !!(account.data && network.isSupported)
+    }
+}
